@@ -21,7 +21,7 @@ class trackModel {
         }
     }
 
-    // Va chercher une chanson par un id //
+    // Va chercher une chanson ou plusieurs par un id //
     async getTrack(resultTrack) {
         try {
             const resultTrackId = await this.connection.promise().query('SELECT * FROM track where id=?', [resultTrack])
@@ -31,7 +31,7 @@ class trackModel {
         }
     }
 
-    //Va chercher par id d'album//
+    //Va chercher par l'id de l'album toutes les chansons //
     async getAlbumTrack(id) {
         try {
             const result = await this.connection.promise().query('SELECT * FROM album INNER JOIN track ON track.id_album = album.id WHERE album.id = ?', [id])
@@ -41,7 +41,7 @@ class trackModel {
         }
     }
 
-    // Créer une nouvelle chanson 
+    // Créer une nouvelle chanson //
     async postTrack(createTrack) {
         try {
             const resultCreateTrack = await this.connection.promise().query('INSERT INTO  track set ?', [createTrack])
